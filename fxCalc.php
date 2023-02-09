@@ -8,11 +8,11 @@
   
   $amount = $_POST[ 'source_amount' ];
   
-  if( is_numeric( $prncpl ) )
+  if( is_numeric( $amount ) )
   {
     $source = $_POST[ 'source_currency' ];
     $dest = $_POST[ 'dest_currency' ];
-  
+
     $convertAmount = CurrencyDataModel::getConvertAmount( $amount, $source, $dest );
   }
   else
@@ -37,7 +37,6 @@
 
       <center>
         
-        <input type="text" name="source_amount" value="<?php echo  $amount ?>" />
         
         <select name="source_currency">
         <?php
@@ -55,11 +54,13 @@
                }
              ?>
 
-            ><?php echo "$r %" ?></option>
+            ><?php echo "$r" ?></option>
         <?php
           }
         ?>
         </select>
+
+        <input type="text" name="source_amount" value="<?php echo  $amount ?>" />
 
         <select name="dest_currency">
         <?php
@@ -77,7 +78,7 @@
                }
              ?>
 
-            ><?php echo "$t currency" ?></option>
+            ><?php echo "$t" ?></option>
 
         <?php
           }
@@ -88,7 +89,7 @@
 
         <br/><br/>
 
-        <input type="submit" value="Calculate"/>
+        <input type="submit" value="Convert"/>
         <input type="reset"/>
 
       </center>

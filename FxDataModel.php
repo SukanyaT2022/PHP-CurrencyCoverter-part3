@@ -1,12 +1,15 @@
 <?php
 
-class CurrencyDataModel
+class FxDataModel
 {
 
-  
+  /*
   private static $SOURCE_CURRENCY = array("CAD","EUR", "GBP", "USD");
   
   private static $DES_CURRENCY = array("CAD","EUR", "GBP", "USD");
+*/
+
+private static $CURRENCIES = array("CAD","EUR", "GBP", "USD");
 
 //line17 is array cad to cad and cad to eur and so on
 //line 18 is array eur to cs eur to eur and so on
@@ -19,7 +22,7 @@ array(1.44, 1, 0.89, 1.08),//row no 1
 array(1.63, 1.13, 1, 1.22),//row no2
 array(1.34, 0.9, 0.82, 1),//row no 3
   );
-
+/*
   public static function getSourceCurrency()
   {
     return self::$SOURCE_CURRENCY;
@@ -29,6 +32,15 @@ array(1.34, 0.9, 0.82, 1),//row no 3
   {
     return self::$DES_CURRENCY;
   }
+  */
+
+  public static function getCurrencies()
+  {
+    return self::$CURRENCIES;
+  }
+
+
+
 
   public static function getConvertAmount( $amount, $source, $des )
   {
@@ -36,24 +48,26 @@ $position1 = 0;
 $position2 = 0;
 
 
-    for($i=0; $i<count(self::$SOURCE_CURRENCY); $i++){
-if (self::$SOURCE_CURRENCY[$i]==$source){
+    for($i=0; $i<count(self::$CURRENCIES); $i++){
+if (self::$CURRENCIES[$i]==$source){
 $position1 = $i;
 break;
 }
     }
 
-    for($i=0; $i<count(self::$DES_CURRENCY); $i++){
-      if (self::$DES_CURRENCY[$i]==$des){
+    for($i=0; $i<count(self::$CURRENCIES); $i++){
+      if (self::$CURRENCIES[$i]==$des){
       $position2 = $i;
       break;
       }
           }
 
-
+/*
 $rate = self::$CONVERSION_RATE[$position1][$position2];
 return $amount * $rate;
-
+*/
+$rate = self::$CONVERSION_RATE[$position1][$position2];
+return $rate;
 
 
 

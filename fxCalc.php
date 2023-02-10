@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
 <?php
-  require_once( 'CurrencyDataModel.php' );
+  require_once( 'FxDataModel.php' );
   
-  $sourceCurrency = CurrencyDataModel::getSourceCurrency();
-  $desCurrency = CurrencyDataModel::getDesCurrency();
+  $sourceCurrency = FxDataModel::getCurrencies();
+  $desCurrency = FxDataModel::getCurrencies();
   
   $amount = $_POST[ 'source_amount' ];
   
@@ -13,7 +13,8 @@
     $source = $_POST[ 'source_currency' ];
     $dest = $_POST[ 'dest_currency' ];
 
-    $convertAmount = CurrencyDataModel::getConvertAmount( $amount, $source, $dest );
+    $rate = FxDataModel::getConvertAmount( $amount, $source, $dest );
+    $convertAmount = $amount * $rate;
   }
   else
   {

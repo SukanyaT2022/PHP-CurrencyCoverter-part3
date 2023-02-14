@@ -15,12 +15,12 @@ private static $CURRENCIES = array("CAD","EUR", "GBP", "USD");
 //line 18 is array eur to cs eur to eur and so on
 //line 19 is array GBP to cad and GBP to eur
 //line 20 is array usd to cad and usd to ur and so on
-//below - 2 dimension array
+//below - 2 dimension array-conversion_rate
   private static $CONVERSION_RATE = array( 
-array(1, 0.69, 0.61, 0.75),//row no 0 - 1 colume 0 and 0.69 is column 1 and 0.61 is column 2
-array(1.44, 1, 0.89, 1.08),//row no 1
-array(1.63, 1.13, 1, 1.22),//row no2
-array(1.34, 0.9, 0.82, 1),//row no 3
+array(1.0, 0.624514066, 0.588714763, 0.810307 ),//row no 0 - 1 colume 0 and 0.69 is column 1 and 0.61 is column 2
+array(1.601244959, 1.0, 0.942676548, 1.2975),//row no 1
+array(1.698615463, 1.060809248, 1.0, 1.3764),//row no2
+array(1.234100162, 0.772200772, 0.726532984, 1.0),//row no 3
   );
 /*
   public static function getSourceCurrency()
@@ -34,7 +34,7 @@ array(1.34, 0.9, 0.82, 1),//row no 3
   }
   */
 
-  public static function getCurrencies()
+  public static function getFxCurrencies()//return currencies array
   {
     return self::$CURRENCIES;
   }
@@ -42,7 +42,7 @@ array(1.34, 0.9, 0.82, 1),//row no 3
 
 
 
-  public static function getConvertAmount( $amount, $source, $des )
+  public static function getFxRate( $amount, $source, $des )//return conversion rate--source which row--des --which column
   {
 $position1 = 0;
 $position2 = 0;

@@ -2,29 +2,29 @@
 
 <?php
   require_once( 'FxDataModel.php' );
-  
-  $sourceCurrency = FxDataModel::getCurrencies();
-  $desCurrency = FxDataModel::getCurrencies();
-  
-  $amount = $_POST[ 'source_amount' ];
-  
-  if( is_numeric( $amount ) )
-  {
-    $source = $_POST[ 'source_currency' ];
-    $dest = $_POST[ 'dest_currency' ];
+  $sourceCurrency = FxDataModel::getFxCurrencies();
+$desCurrency = FxDataModel::getFxCurrencies();
+    
+$amount = $_POST[ 'source_amount' ];
+    
+   if( is_numeric( $amount ) )
+{
+ $source = $_POST[ 'source_currency' ];
+ $dest = $_POST[ 'dest_currency' ];
 
-    $rate = FxDataModel::getConvertAmount( $amount, $source, $dest );
-    $convertAmount = $amount * $rate;
-  }
-  else
-  {
-    $convertAmount = ''         ;
-    $amount     = ''         ;
-    $source     =  $sourceCurrency[ 0 ];
-    $dest      =   $desCurrency[ 0 ];
-  }
+ $rate = FxDataModel::getFxRate( $amount, $source, $dest );
+ $convertAmount = $amount * $rate;
+}
+else
+    {
+   $convertAmount = ''         ;
+  $amount     = ''         ;
+  $source     =  $sourceCurrency[ 0 ];
+  $dest      =   $desCurrency[ 0 ];
+     }
+
+ 
 ?>
-
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -97,4 +97,4 @@
     </form>
 
   </body>
-</html>
+</html> 

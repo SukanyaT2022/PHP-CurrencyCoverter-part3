@@ -2,8 +2,8 @@
 
 <?php
   require_once( 'FxDataModel.php' );
-  $sourceCurrency = FxDataModel::getFxCurrencies();
-$desCurrency = FxDataModel::getFxCurrencies();
+  $currencies = FxDataModel::getFxCurrencies();
+
     
 $amount = $_POST[ 'source_amount' ];
     
@@ -12,15 +12,15 @@ $amount = $_POST[ 'source_amount' ];
  $source = $_POST[ 'source_currency' ];
  $dest = $_POST[ 'dest_currency' ];
 
- $rate = FxDataModel::getFxRate( $amount, $source, $dest );
- $convertAmount = $amount * $rate;
+
+ $convertAmount = $amount * FxDataModel::getFxRate( $source, $dest );
 }
 else
     {
    $convertAmount = ''         ;
   $amount     = ''         ;
-  $source     =  $sourceCurrency[ 0 ];
-  $dest      =   $desCurrency[ 0 ];
+  $source     =  $currencies[ 0 ];
+  $dest      =   $currencies[ 0 ];
      }
 
  
@@ -41,7 +41,7 @@ else
         
         <select name="source_currency">
         <?php
-          foreach( $sourceCurrency as $r )
+          foreach( $currencies as $r )
           {
         ?>
             <option value="<?php echo $r ?>"
@@ -65,7 +65,7 @@ else
 
         <select name="dest_currency">
         <?php
-          foreach( $desCurrency as $t )
+          foreach( $currencies as $t )
           {
         ?>
             <option value="<?php echo $t ?>"
@@ -91,7 +91,7 @@ else
         <br/><br/>
 
         <input type="submit" value="Convert"/>
-        <input type="reset"/>
+        <input type="reset" value="Reset">
 
       </center>
     </form>

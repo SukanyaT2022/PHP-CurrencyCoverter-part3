@@ -42,20 +42,20 @@ array(1.234100162, 0.772200772, 0.726532984, 1.0),//row no 3
 
 
 
-  public static function getFxRate( $amount, $source, $des )//return conversion rate--source which row--des --which column
+  public static function getFxRate( $source, $des )//return conversion rate--source which row--des --which column
   {
 $position1 = 0;
 $position2 = 0;
+$nCurrencies = count(self::$CURRENCIES);
 
-
-    for($i=0; $i<count(self::$CURRENCIES); $i++){
+    for($i=0; $i<$nCurrencies; $i++){
 if (self::$CURRENCIES[$i]==$source){
 $position1 = $i;
 break;
 }
     }
 
-    for($i=0; $i<count(self::$CURRENCIES); $i++){
+    for($i=0; $i < $nCurrencies; $i++){
       if (self::$CURRENCIES[$i]==$des){
       $position2 = $i;
       break;
@@ -66,8 +66,8 @@ break;
 $rate = self::$CONVERSION_RATE[$position1][$position2];
 return $amount * $rate;
 */
-$rate = self::$CONVERSION_RATE[$position1][$position2];
-return $rate;
+return self::$CONVERSION_RATE[$position1][$position2];
+
 
 
 

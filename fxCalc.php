@@ -3,18 +3,28 @@
 <?php
   require_once( 'FxDataModel.php' );
   $currencies = FxDataModel::getFxCurrencies();
-
+if (array_key_exists('source_amount', $_POST))
+    {
+      $amount = $_POST[ 'source_amount' ];
     
-$amount = $_POST[ 'source_amount' ];
-    
-   if( is_numeric( $amount ) )
-{
- $source = $_POST[ 'source_currency' ];
- $dest = $_POST[ 'dest_currency' ];
+      if( is_numeric( $amount ) )
+   {
+    $source = $_POST[ 'source_currency' ];
+    $dest = $_POST[ 'dest_currency' ];
+   
+   
+    $convertAmount = $amount * FxDataModel::getFxRate( $source, $dest );
+   }
+   else
+   {
+  $convertAmount = ''         ;
+ $amount     = ''         ;
+ $source     =  $currencies[ 0 ];
+ $dest      =   $currencies[ 0 ];
+    }
 
+    }
 
- $convertAmount = $amount * FxDataModel::getFxRate( $source, $dest );
-}
 else
     {
    $convertAmount = ''         ;

@@ -1,5 +1,5 @@
 <?php
-
+define("FILENAME","fxCalc.ini");
 class FxDataModel
 {
 
@@ -22,6 +22,14 @@ array(1.601244959, 1.0, 0.942676548, 1.2975),//row no 1
 array(1.698615463, 1.060809248, 1.0, 1.3764),//row no2
 array(1.234100162, 0.772200772, 0.726532984, 1.0),//row no 3
   );
+  private static $file;
+  const CSVFILE=parse_ini_file($file,true)["fx.rates.file"];
+function __construct()
+{
+ $file=FILENAME;
+}
+
+
 /*
   public static function getSourceCurrency()
   {

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-  require_once( 'FxDataModel.php' );
+  include 'FxDataModel.php' ;
   $currencies = FxDataModel::getFxCurrencies();
 if (array_key_exists('source_amount', $_POST))
     {

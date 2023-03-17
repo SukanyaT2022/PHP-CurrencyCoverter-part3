@@ -2,21 +2,25 @@
 
 <?php
   include 'FxDataModel.php' ;
-  $currencies = FxDataModel::getFxCurrencies();
+  $obj = new FxDataModel();
+  $currencies = $obj->getFxCurrencies();
+  // print_r($currencies);
 if (array_key_exists('source_amount', $_POST))
+
     {
-      $amount = $_POST[ 'source_amount' ];
+   $amount = $_POST[ 'source_amount' ];
     
       if( is_numeric( $amount ) )
    {
-    $source = $_POST[ 'source_currency' ];
-    $dest = $_POST[ 'dest_currency' ];
+     $source = $_POST[ 'source_currency' ];
+   $dest = $_POST[ 'dest_currency' ];
    
    
-    $convertAmount = $amount * FxDataModel::getFxRate( $source, $dest );
+  $convertAmount = $amount * $obj->getFxRate( $source, $dest );
    }
    else
    {
+   
   $convertAmount = ''         ;
  $amount     = ''         ;
  $source     =  $currencies[ 0 ];
@@ -27,6 +31,7 @@ if (array_key_exists('source_amount', $_POST))
 
 else
     {
+     
    $convertAmount = ''         ;
   $amount     = ''         ;
   $source     =  $currencies[ 0 ];
@@ -49,7 +54,7 @@ else
       <center>
         
         
-        <select name="source_currency">
+        <select name="source_currency" style="height:30px">
         <?php
           foreach( $currencies as $r )
           {
@@ -71,9 +76,9 @@ else
         ?>
         </select>
 
-        <input type="text" name="source_amount" value="<?php echo  $amount ?>" />
+        <input type="text" name="source_amount"  style="height:30px" value="<?php echo  $amount ?>" />
 
-        <select name="dest_currency">
+        <select name="dest_currency" style="height:30px">
         <?php
           foreach( $currencies as $t )
           {
@@ -96,7 +101,7 @@ else
         ?>
         </select>
 
-        <input type="text" name="dest_amount" disabled="disabled" value="<?php echo   $convertAmount  ?>"/>
+        <input type="text" name="dest_amount" disabled="disabled"  style="height:30px" value="<?php echo   $convertAmount  ?>"/>
 
         <br/><br/>
 
